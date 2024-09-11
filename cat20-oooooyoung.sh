@@ -133,6 +133,24 @@ modify_gas_value() {
   echo -e "maxFeeRate 已修改为 $new_max_fee_rate"
 }
 
+
+list_wallet_files() {
+  echo -e "\n"
+  cd ~/cat-token-box/packages/cli
+
+  # 查找并列出符合条件的文件
+  for file in wallet_*.json; do
+    if [ -f "$file" ]; then
+      echo "文件名: $(basename "$file")"
+      echo "内容:"
+      cat "$file"
+      echo "-----------------------------"
+    else
+      echo "没有找到匹配的文件。"
+    fi
+  done
+}
+
 echo && echo -e " ${Red_font_prefix}dusk_network 一键安装脚本${Font_color_suffix} by \033[1;35moooooyoung\033[0m
 此脚本完全免费开源, 由推特用户 ${Green_font_prefix}@ouyoung11开发${Font_color_suffix}, 
 欢迎关注, 如有收费请勿上当受骗。
@@ -141,9 +159,9 @@ echo && echo -e " ${Red_font_prefix}dusk_network 一键安装脚本${Font_color_
  ${Green_font_prefix} 2.创建钱包 ${Font_color_suffix}
  ${Green_font_prefix} 3.开始 mint cat ${Font_color_suffix}
  ${Green_font_prefix} 4.查看节点同步日志 ${Font_color_suffix}
- ${Green_font_prefix} 5.查看钱包余额情况 ${Font_color_suffix}
  ${Green_font_prefix} 6.备份后删除并创建新钱包 ${Font_color_suffix}
  ${Green_font_prefix} 7.修改 gas 值 ${Font_color_suffix}
+ ${Green_font_prefix} 8.列出钱包文件 ${Font_color_suffix}
  ———————————————————————" && echo
 read -e -p " 请参照上面的步骤，请输入数字:" num
 case "$num" in
@@ -167,6 +185,9 @@ case "$num" in
     ;;	
 7)
     modify_gas_value
+    ;;
+8)
+    list_wallet_files
     ;;
 *)
     echo
