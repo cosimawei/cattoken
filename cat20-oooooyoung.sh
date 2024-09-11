@@ -138,15 +138,13 @@ list_wallet_files() {
   echo -e "\n"
   cd ~/cat-token-box/packages/cli
 
-  # 查找并列出符合条件的文件
-  for file in wallet_*.json; do
+  # 查找并列出符合条件的文件，包括 wallet.json 和 wallet_*.json
+  for file in wallet.json wallet_*.json; do
     if [ -f "$file" ]; then
       echo "文件名: $(basename "$file")"
       echo "内容:"
       cat "$file"
       echo "-----------------------------"
-    else
-      echo "没有找到匹配的文件。"
     fi
   done
 }
