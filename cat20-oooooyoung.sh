@@ -115,7 +115,7 @@ start_mint_cat() {
 }
 
 check_node_log() {
-  docker logs tracker
+ docker logs -f --tail 100 tracker
 }
 
 check_wallet_balance() {
